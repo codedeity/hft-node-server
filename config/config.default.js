@@ -7,7 +7,11 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_hft_team_1531660039610_7822';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [ 'errorHandler' ];
+
+  config.errorHandler = {
+    match: '/api',
+  };
 
   return config;
 };
