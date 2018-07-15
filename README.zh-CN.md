@@ -16,6 +16,15 @@ $npm run dev
 $open http://localhost:7001/
 ```
 
+### 调试
+
+VS Code
+
+- Debug 选择 "Launch Egg"配置
+- F5启动一键启动
+- 选择正确的worker程序，打断点即可
+- 浏览器访问REST API即可
+
 ### 部署
 
 ```bash
