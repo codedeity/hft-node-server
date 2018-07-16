@@ -4,14 +4,13 @@ server end code for hft team
 
 ## 快速入门
 
-<!-- 在此次添加使用文档 -->
-
-如需进一步了解，参见 [egg 文档][egg]。
+egg框架的使用，参见 [egg 文档](https://eggjs.org)。
 
 ### 本地开发
 
 ```bash
 $npm i
+$npm dedupe (optional)
 $npm run dev
 $open http://localhost:7001/
 ```
@@ -22,8 +21,8 @@ VS Code
 
 - Debug 选择 "Launch Egg"配置
 - F5启动一键启动
-- 选择正确的worker程序，打断点即可
-- 浏览器访问REST API即可
+- 选择正确的worker程序，打断点
+- 浏览器访问REST API
 
 ### 部署
 
@@ -44,4 +43,3 @@ $npm stop
 - 使用 `npm test` 来执行单元测试。
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
 
-[egg]: https://eggjs.org
