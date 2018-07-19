@@ -1,11 +1,11 @@
 'use strict';
 
-const Service = require('egg').Service;
+const Egg = require('egg');
 
-class TopicService extends Service {
+class MarketService extends Egg.Service {
   constructor(ctx) {
     super(ctx);
-    this.root = 'https://cnodejs.org/api/v1';
+    this.root = 'https://fcoin.com/api/v2';
   }
 
   async request(url, opts) {
@@ -70,4 +70,4 @@ class TopicService extends Service {
   }
 }
 
-module.exports = TopicService;
+module.exports = MarketService;

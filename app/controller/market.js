@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const Egg = require('egg');
 
-class TopicsController extends Controller {
+class MarketController extends Egg.Controller {
   constructor(ctx) {
     super(ctx);
 
@@ -12,11 +12,24 @@ class TopicsController extends Controller {
       tab: { type: 'enum', values: [ 'ask', 'share', 'job' ], required: false },
       content: 'string',
     };
+
+    this.userRegisterRule = {
+      username: 'string',
+      password: 'string',
+      gender: { type: 'enum', value: [ 'male,female' ], required: false },
+      mobile: { type: 'string', required: false },
+      mail: { type: 'string', required: false },
+    };
+
   }
 
-  async show() {
+  async register() {
     const { ctx } = this;
 
+    // 校验用户注册信息符合格式
+    ctx.validate(this.userRegisterRule);
+
+    // 回复信息给Web Client
     ctx.body = await ctx.service.topics.show({
       id: ctx.params.id,
       mdrender: ctx.query.mdrender !== 'false',
@@ -62,4 +75,4 @@ class TopicsController extends Controller {
   }
 }
 
-module.exports = TopicsController;
+module.exports = MarketController;

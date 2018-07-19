@@ -1,8 +1,8 @@
 'use strict';
 
-const Controller = require('egg').Controller;
+const Egg = require('egg');
 
-class HomeController extends Controller {
+class HomeController extends Egg.Controller {
   async index() {
     this.ctx.body = 'hi, HFT Team';
   }
