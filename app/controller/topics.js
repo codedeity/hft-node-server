@@ -2,7 +2,7 @@
 
 const Egg = require('egg');
 
-class TopicController extends Egg.Controller {
+class TopicsController extends Egg.Controller {
   constructor(ctx) {
     super(ctx);
 
@@ -62,4 +62,4 @@ class TopicController extends Egg.Controller {
   }
 }
 
-module.exports = TopicController;
+module.exports = TopicsController;

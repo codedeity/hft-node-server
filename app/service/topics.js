@@ -2,7 +2,7 @@
 
 const Egg = require('egg');
 
-class TopicService extends Egg.Service {
+class TopicsService extends Egg.Service {
   constructor(ctx) {
     super(ctx);
     this.root = 'https://cnodejs.org/api/v1';
@@ -70,4 +70,4 @@ class TopicService extends Egg.Service {
   }
 }
 
-module.exports = TopicService;
+module.exports = TopicsService;

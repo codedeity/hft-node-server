@@ -10,7 +10,7 @@ module.exports = app => {
   const resource_url = url => {
     return api_prefix + url;
   };
-
+  app.router.resources('admin', resource_url('admin'), 'admin.admin');
   app.router.resources('topic', resource_url('topic'), 'topic');
   app.router.resources('market', resource_url('market'), 'market');
   app.router.resources('user', resource_url('user'), 'user');
