@@ -23,6 +23,16 @@ class UserController extends Egg.Controller {
 
   }
 
+  async show() {
+    const { ctx } = this;
+
+    ctx.body = await ctx.service.topics.show({
+      id: ctx.params.id,
+      mdrender: ctx.query.mdrender !== 'false',
+      accesstoken: ctx.query.accesstoken || '',
+    });
+  }
+
   async index() {
     const { ctx } = this;
 
@@ -40,9 +50,36 @@ class UserController extends Egg.Controller {
     });
   }
 
-  async register() {
-    const { ctx } = this;
+  // 不可以这么写
+  // async reg() {
+  //   const { ctx } = this;
+  //   // 校验用户注册信息符合格式
+  //   ctx.validate(this.userRegisterRule);
+  //   // 回复信息给Web Client
+  //   ctx.body = await ctx.service.user.save({
+  //     id: ctx.params.id,
+  //     mdrender: ctx.query.mdrender !== 'false',
+  //     accesstoken: ctx.query.accesstoken || '',
+  //   });
+  //   ctx.status = 201;
+  // }
 
+  async new() {
+    const { ctx } = this;
+    // 校验用户注册信息符合格式
+    ctx.validate(this.userRegisterRule);
+    // 回复信息给Web Client
+    ctx.body = await ctx.service.user.save({
+      id: ctx.params.id,
+      mdrender: ctx.query.mdrender !== 'false',
+      accesstoken: ctx.query.accesstoken || '',
+    });
+    ctx.status = 201;
+  }
+
+  async create() {
+    const { ctx } = this;
+    ctx.validate(this.createRule);
     // 校验用户注册信息符合格式
     ctx.validate(this.userRegisterRule);
 
@@ -52,11 +89,6 @@ class UserController extends Egg.Controller {
       mdrender: ctx.query.mdrender !== 'false',
       accesstoken: ctx.query.accesstoken || '',
     });
-  }
-
-  async create() {
-    const { ctx } = this;
-    ctx.validate(this.createRule);
 
     const id = await ctx.service.topics.create(ctx.request.body);
     ctx.body = {
