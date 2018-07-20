@@ -23,20 +23,6 @@ class UserController extends Egg.Controller {
 
   }
 
-  async register() {
-    const { ctx } = this;
-
-    // 校验用户注册信息符合格式
-    ctx.validate(this.userRegisterRule);
-
-    // 回复信息给Web Client
-    ctx.body = await ctx.service.user.save({
-      id: ctx.params.id,
-      mdrender: ctx.query.mdrender !== 'false',
-      accesstoken: ctx.query.accesstoken || '',
-    });
-  }
-
   async index() {
     const { ctx } = this;
 
@@ -51,6 +37,20 @@ class UserController extends Egg.Controller {
       tab: ctx.query.tab,
       limit: ctx.query.limit,
       mdrender: ctx.query.mdrender !== 'false',
+    });
+  }
+
+  async register() {
+    const { ctx } = this;
+
+    // 校验用户注册信息符合格式
+    ctx.validate(this.userRegisterRule);
+
+    // 回复信息给Web Client
+    ctx.body = await ctx.service.user.save({
+      id: ctx.params.id,
+      mdrender: ctx.query.mdrender !== 'false',
+      accesstoken: ctx.query.accesstoken || '',
     });
   }
 
