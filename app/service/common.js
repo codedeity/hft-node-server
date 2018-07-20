@@ -6,7 +6,7 @@ class CommonService extends Egg.Service {
 
   constructor(ctx) {
     super(ctx);
-    this.root = 'https://fcoin.com/api/v2';
+    this.root = 'https://fcoin.com/api/v2/public/';
   }
 
   async request(url, opts) {
@@ -18,21 +18,13 @@ class CommonService extends Egg.Service {
     return this.ctx.curl(url, opts);
   }
 
-  async index() {
-    // const result = await this.request('public/server-time', null);
-    // this.checkSuccess(result);
-    const result = await this.ctx.curl('https://api.fcoin.com/v2/public/server-time');
+  async servertime() {
+    const ctx = this.ctx;
+    const result = await this.request('server-time', null);
+    ctx.status = result.status;
+    ctx.set(result.headers);
     return result.data;
   }
 
-  checkSuccess(result) {
-    if (result.status !== 200) {
-      const errorMsg = result.data && result.data.error_msg ? result.data.error_msg : 'unknown error';
-      this.ctx.throw(result.status, errorMsg);
-    }
-    if (!result.data.success) {
-      this.ctx.throw(500, 'remote response error', { data: result.data });
-    }
-  }
 }
 module.exports = CommonService;
