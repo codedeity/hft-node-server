@@ -64,6 +64,7 @@ class UsersController extends Egg.Controller {
   //   ctx.status = 201;
   // }
 
+  // url to here
   async new() {
     const { ctx } = this;
     // 校验用户注册信息符合格式
