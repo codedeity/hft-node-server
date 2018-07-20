@@ -15,5 +15,6 @@ module.exports = app => {
   app.router.resources('market', resource_url('market'), 'market');
   app.router.resources('user', resource_url('user'), 'user');
   app.router.resources('system', resource_url('system'), 'system');
-  app.router.resources('stock', resource_url('stock'), 'stock');
+  // app.router.resources('stock', resource_url('stock'), 'stock');
+  app.router.resources('common', resource_url('common'), 'common');
 };
