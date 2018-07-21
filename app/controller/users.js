@@ -50,19 +50,19 @@ class UsersController extends Egg.Controller {
     });
   }
 
-  // 不可以这么写
-  // async reg() {
-  //   const { ctx } = this;
-  //   // 校验用户注册信息符合格式
-  //   ctx.validate(this.userRegisterRule);
-  //   // 回复信息给Web Client
-  //   ctx.body = await ctx.service.user.save({
-  //     id: ctx.params.id,
-  //     mdrender: ctx.query.mdrender !== 'false',
-  //     accesstoken: ctx.query.accesstoken || '',
-  //   });
-  //   ctx.status = 201;
-  // }
+  //  for testing post
+  async register() {
+    const { ctx } = this;
+    // 校验用户注册信息符合格式
+    ctx.validate(this.userRegisterRule);
+    // 回复信息给Web Client
+    ctx.body = await ctx.service.user.save({
+      id: ctx.params.id,
+      mdrender: ctx.query.mdrender !== 'false',
+      accesstoken: ctx.query.accesstoken || '',
+    });
+    ctx.status = 201;
+  }
 
   // url to here
   async new() {

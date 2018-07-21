@@ -1,6 +1,7 @@
 {
   "extends": "eslint-config-egg",
   "rules" : {
-    "semi":"warn"
+    "semi":"warn",
+    "no-unused-vars": 1
   }
 }
