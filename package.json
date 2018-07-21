@@ -4,11 +4,17 @@
   "description": "server end code for hft team",
   "private": true,
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "egg": "^2.2.1",
+    "egg-router-plus": "^1.2.1",
     "egg-scripts": "^2.5.0",
     "egg-sequelize": "^3.1.5",
     "egg-validate": "^1.0.0",
-    "mysql2": "^1.5.3"
+    "loader-koa": "^2.0.1",
+    "markdown-it": "^8.4.2",
+    "mysql2": "^1.5.3",
+    "uuid": "^3.3.2",
+    "validator": "^10.4.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -26,6 +32,8 @@
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-hft-node-server",
     "stop": "egg-scripts stop --title=egg-server-hft-node-server",
+    "restart": "npm run stop && npm run start",
+    "docker": "egg-scripts start --title=egg-server-hft-node-server",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -33,7 +41,10 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "migrate:new": "egg-sequelize migration:create",
+    "migrate:up": "egg-sequelize db:migrate",
+    "migrate:down": "egg-sequelize db:migrate:undo"
   },
   "ci": {
     "version": "8"

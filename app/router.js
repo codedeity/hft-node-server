@@ -5,9 +5,10 @@
  */
 module.exports = app => {
 
-  const { router, controller } = app;
-
   const api_prefix = '/api/v2/';
+  const apiV2Router = app.router.namespace(api_prefix);
+  const { router, controller, middleware } = app;
+
   const resource_url = url => {
     return api_prefix + url;
   };
