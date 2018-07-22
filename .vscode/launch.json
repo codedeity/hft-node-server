@@ -4,8 +4,15 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "Launch Egg",
+            "name": "attach egg by Process ID",
+            "type": "node",
+            "request": "attach",
+            "processId": "${command:PickProcess}"
+        },
+        {
+            "name": "Launch egg",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceRoot}",
@@ -18,12 +25,6 @@
             "port": 9229,
             "autoAttachChildProcesses": true
           },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\--title=egg-server-hft-node-server"
-        },
 
     ]
 }

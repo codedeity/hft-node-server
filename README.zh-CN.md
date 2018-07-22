@@ -19,10 +19,18 @@ $open http://localhost:7001/
 
 VS Code
 
-- Debug 选择 "Launch Egg"配置
+#### 方法一：
+
+- VScode Debug 选择 "Launch egg"配置
 - F5启动一键启动
 - 选择正确的worker程序，打断点
 - 浏览器访问REST API
+
+#### 方法二：
+
+- 控制台命令行：npm run debug
+- VScode Debug 选择Attach egg
+- 选择到debug port为大于等于9230的一个进程
 
 ### 部署
 
@@ -42,4 +50,3 @@ $npm stop
 - 使用 `npm run lint` 来做代码风格检查。
 - 使用 `npm test` 来执行单元测试。
 - 使用 `npm run autod` 来自动检测依赖更新，详细参见 [autod](https://www.npmjs.com/package/autod) 。
-

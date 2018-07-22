@@ -9,3 +9,7 @@ exports.sequelize = {
   username: 'mariadb',
   password: 'password',
 };
+
+exports.logger = {
+  loglevel: 'INFO',
+};

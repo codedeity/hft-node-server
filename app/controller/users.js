@@ -50,7 +50,7 @@ class UsersController extends Egg.Controller {
     });
   }
 
-  //  for testing post
+  // post register
   async register() {
     const { ctx } = this;
     // 校验用户注册信息符合格式
@@ -105,6 +105,17 @@ class UsersController extends Egg.Controller {
     ctx.validate(this.createRule);
     await ctx.service.topics.update(Object.assign({ id }, ctx.request.body));
     ctx.status = 204;
+  }
+
+  async verify() {
+    const { ctx } = this;
+    const user = ctx.request.user;
+    ctx.body = {
+      success: true,
+      loginname: user.loginname,
+      id: user._id,
+      avatar_url: user.avatar_url,
+    };
   }
 }
 
