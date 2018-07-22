@@ -15,6 +15,12 @@ exports.routerPlus = {
   enable: true,
   package: 'egg-router-plus',
 };
+
+exports.cors = {
+  enable: true,
+  package: 'egg-cors',
+};
+
 // debug 为 true 时，用于本地调试
 exports.debug = false;
 

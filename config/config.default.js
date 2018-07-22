@@ -2,10 +2,6 @@
 
 module.exports = appInfo => {
 
-  function inInnerIp(strip) {
-    return strip === '127.0.0.1';
-  }
-
   const config = {};
   // debug 为 true 时，用于本地调试
   config.debug = true;
@@ -42,8 +38,9 @@ module.exports = appInfo => {
     password: 'password',
   };
 
-  exports.security = {
-    domainWhiteList: [ '.domain.com' ], // 安全白名单，以 . 开头
+  config.security = {
+    // for CORS
+    domainWhiteList: [ 'http://localhost:7001', '.domain.com', '.127.0.0.1' ], // 安全白名单，以 . 开头
     protocolWhitelist: [ 'wss' ],
     ssrf: {
       // support both cidr subnet or specific ip
@@ -53,20 +50,26 @@ module.exports = appInfo => {
       ],
       // checkAddress has higher priority than ipBlackList
       checkAddress(ip) {
-        return ip !== '127.0.0.1';
+        return ip !== '127.0.0.2';
       },
     },
     csrf: {
-      matching: ctx => { return ctx.ip === '127.0.0.1'; },
       // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
-      ignore: ctx => inInnerIp(ctx.ip),
-
+      // change 127.0.0.2 to 127.0.0.1 you can by pass csrf
+      ignore: ctx => { return ctx.ip === '127.0.0.2'; },
+      ignoreJSON: true,
     },
     csp: {
       ignore: '/api/v1',
     },
   };
-
+  // If the origin is set,
+  // the plugin will follow it to set the Access-Control-Allow-Origin and ignore the security.domainWhiteList.
+  // Otherwise, the security.domainWhiteList which is default will take effect as described above.
+  config.cors = {
+    // {string|Function} origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
   config.logger = {
     loglevel: 'DEBUG',
 
