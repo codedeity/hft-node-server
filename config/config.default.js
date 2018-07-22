@@ -56,8 +56,7 @@ module.exports = appInfo => {
     csrf: {
       // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
       // change 127.0.0.2 to 127.0.0.1 you can by pass csrf
-      ignore: ctx => { return ctx.ip === '127.0.0.2'; },
-      ignoreJSON: true,
+      ignore: ctx => { return ctx.ip === '127.0.0.2' || '/api/v2/users/sign'; },
     },
     csp: {
       ignore: '/api/v1',

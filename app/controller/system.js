@@ -47,7 +47,7 @@ class SystemController extends Egg.Controller {
 
     const id = await ctx.service.topics.create(ctx.request.body);
     ctx.body = {
-      topic_id: id,
+      user_id: id,
     };
     ctx.status = 201;
   }

@@ -5,27 +5,31 @@
  */
 module.exports = app => {
 
-  const api_prefix = '/api/v2/';
-  const apiV1Router = app.router.namespace(api_prefix);
+  const api_v2_prefix = '/api/v2/';
   const { router, controller, middleware } = app;
+  const apiV2Router = router.namespace(api_v2_prefix);
 
-  const resource_url = url => {
-    return api_prefix + url;
+  const path_url = url => {
+    return api_v2_prefix + url;
   };
 
   const tokenRequired = middleware.tokenRequired();
 
   //  COMMON USING
   router.get('/', controller.home.index);
-  router.post('/api/v2/users/register', controller.users.register);
-  apiV1Router.get('/user/:loginname', controller.users.show);
-  apiV1Router.post('/accesstoken', tokenRequired, controller.users.verify);
+
+  // user register/login/logout
+  apiV2Router.post(path_url('sign/up'), controller.sign.signup);
+  apiV2Router.post(path_url('sign/in'), controller.sign.signin);
+  apiV2Router.post(path_url('sign/out'), controller.sign.signout);
+
+  apiV2Router.post('/accesstoken', tokenRequired, controller.users.verify);
 
   // REST API ROUTE MOUNT
-  router.resources('admin', resource_url('admin'), controller.admin.admin);
-  router.resources('topics', resource_url('topics'), controller.topics);
-  router.resources('market', resource_url('market'), controller.market);
-  router.resources('users', resource_url('users'), controller.users);
-  router.resources('system', resource_url('system'), controller.system);
-  router.resources('common', resource_url('common'), controller.common);
+  router.resources('users', path_url('users'), controller.users);
+  router.resources('admin', path_url('admin'), controller.admin.admin);
+  router.resources('topics', path_url('topics'), controller.topics);
+  router.resources('market', path_url('market'), controller.market);
+  router.resources('system', path_url('system'), controller.system);
+  router.resources('common', path_url('common'), controller.common);
 };
