@@ -20,7 +20,10 @@ exports.cors = {
   enable: true,
   package: 'egg-cors',
 };
-
+exports.redis = {
+  enable: false,
+  package: 'egg-redis',
+};
 // debug 为 true 时，用于本地调试
-exports.debug = false;
+exports.debug = true;
 

@@ -15,9 +15,6 @@ module.exports = app => {
 
   const tokenRequired = middleware.tokenRequired();
 
-  //  COMMON USING
-  router.get('/', controller.home.index);
-
   // user register/login/logout
   apiV2Router.post(path_url('sign/up'), controller.sign.signup);
   apiV2Router.post(path_url('sign/in'), controller.sign.signin);

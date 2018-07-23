@@ -55,8 +55,8 @@ module.exports = appInfo => {
     },
     csrf: {
       // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
-      // change 127.0.0.2 to 127.0.0.1 you can by pass csrf
-      ignore: ctx => { return ctx.ip === '127.0.0.2' || '/api/v2/users/sign'; },
+      // 把 127.0.0.2 改为 127.0.0.1 可以绕过所有本地API的 csrf
+      ignore: ctx => { return ctx.ip === '127.0.0.2' || '/api/v2/sign/signin'; },
     },
     csp: {
       ignore: '/api/v1',
@@ -72,6 +72,16 @@ module.exports = appInfo => {
   config.logger = {
     loglevel: 'DEBUG',
 
+  };
+
+  // Cache
+  config.redis = {
+    client: {
+      host: process.env.EGG_REDIS_HOST || '127.0.0.1',
+      port: process.env.EGG_REDIS_PORT || 6379,
+      password: process.env.EGG_REDIS_PASSWORD || '',
+      db: process.env.EGG_REDIS_DB || '0',
+    },
   };
 
   return config;
