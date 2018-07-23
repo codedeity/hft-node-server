@@ -13,6 +13,7 @@ module.exports = app => {
       autoIncrement: true,
     },
     name: STRING(30),
+    mobile: STRING(14),
     age: INTEGER,
     loginname: STRING(30),
     pass: STRING(30),
@@ -37,10 +38,16 @@ module.exports = app => {
     accessToken: STRING(100),
   });
 
+  User.findById = async function(id) {
+    return this.findOne({ where: { id } });
+  };
 
-  User.findByLogin = function(login) {
+  User.findByLogin = async function(login) {
     const somevalue = utility.md5('abc');
     return this.findOne({ where: { login, somevalue } });
+  };
+  User.logSignin = async function() {
+    return this.update({ last_sign_in_at: new Date() });
   };
 
   // const getAvatarUrl = () => {
@@ -59,7 +66,7 @@ module.exports = app => {
 
   User.update_at = new Date();
 
-  User.associate = function() {
+  User.associate = async function() {
     // app.model.User.hasMany(app.model.stock, { as: 'posts', foreignKey: 'user_id' });
   };
 

@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "co": "^4.6.0",
     "egg": "^2.2.1",
     "egg-cors": "^2.1.0",
     "egg-redis": "^2.0.0",
@@ -15,8 +16,11 @@
     "egg-validate": "^1.0.0",
     "loader": "^2.1.1",
     "loader-koa": "^2.0.1",
+    "lodash": "^4.17.10",
     "markdown-it": "^8.4.2",
     "mysql2": "^1.5.3",
+    "nodemailer": "^4.6.7",
+    "nodemailer-smtp-transport": "^2.7.4",
     "uuid": "^3.3.2",
     "validator": "^10.4.0"
   },

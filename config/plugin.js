@@ -2,6 +2,12 @@
 
 // had enabled by egg
 // exports.static = true;
+
+exports.redis = {
+  enable: false,
+  package: 'egg-redis',
+};
+
 exports.validate = {
   enable: true,
   package: 'egg-validate',
@@ -20,10 +26,7 @@ exports.cors = {
   enable: true,
   package: 'egg-cors',
 };
-exports.redis = {
-  enable: false,
-  package: 'egg-redis',
-};
+
 // debug 为 true 时，用于本地调试
 exports.debug = true;
 
