@@ -19,6 +19,20 @@ class SignController extends Egg.Controller {
 
   }
 
+
+  // login action
+  async signin() {
+    const { ctx } = this;
+    // we should give user token
+    ctx.body = {
+      token: 'xxxxxxbbbbbbbbcccccccccc',
+      csrfToken: 'saaafabucodeesdgt;',
+      success: true,
+      errorCode: 0,
+      errorMsg: 'login OK',
+    };
+  }
+
   async signup() {
     const { ctx, service, config } = this;
     const loginname = validator.trim(ctx.request.body.loginname || '').toLowerCase();

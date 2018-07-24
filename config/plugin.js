@@ -3,6 +3,11 @@
 // had enabled by egg
 // exports.static = true;
 
+exports.passportLocal = {
+  enable: true,
+  package: 'egg-passport-local',
+};
+
 exports.redis = {
   enable: false,
   package: 'egg-redis',

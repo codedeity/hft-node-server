@@ -302,6 +302,17 @@ class UsersController extends Egg.Controller {
     ctx.body = { status: 'success' };
   }
 
+  async verify() {
+    const { ctx } = this;
+    const user = ctx.request.user;
+    ctx.body = {
+      success: true,
+      loginname: user.loginname,
+      id: user._id,
+      avatar_url: user.avatar_url,
+    };
+  }
+
 }
 
 module.exports = UsersController;

@@ -6,7 +6,7 @@
 module.exports = app => {
 
   const api_v2_prefix = '/api/v2/';
-  const { router, controller, middleware } = app;
+  const { router, controller, middleware, passport } = app;
   const apiV2Router = router.namespace(api_v2_prefix);
 
   const path_url = url => {
@@ -17,7 +17,12 @@ module.exports = app => {
 
   // user register/login/logout
   apiV2Router.post(path_url('sign/up'), controller.sign.signup);
-  apiV2Router.post(path_url('sign/in'), controller.sign.signin);
+
+  apiV2Router.post(path_url('sign/in'), passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/signin',
+  }));
+
   apiV2Router.post(path_url('sign/out'), controller.sign.signout);
 
   apiV2Router.post('/accesstoken', tokenRequired, controller.users.verify);
