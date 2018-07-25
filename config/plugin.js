@@ -3,6 +3,12 @@
 // had enabled by egg
 // exports.static = true;
 
+// for auth access such as :google/github/twitter/local
+exports.passport = {
+  enable: true,
+  package: 'egg-passport',
+};
+
 exports.passportLocal = {
   enable: true,
   package: 'egg-passport-local',

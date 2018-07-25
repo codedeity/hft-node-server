@@ -84,5 +84,9 @@ module.exports = appInfo => {
     },
   };
 
+  exports.passportLocal = {
+    // usernameField: 'username',
+    // passwordField: 'password',
+  };
   return config;
 };
